@@ -1,10 +1,16 @@
 package com.smartfast.service.impl;
 
+import cn.hutool.core.util.StrUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.smartfast.common.pojo.PageResult;
 import com.smartfast.mapper.UserMapper;
 import com.smartfast.pojo.User;
 import com.smartfast.service.UserService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -68,5 +74,37 @@ public class UserServiceImpl implements UserService {
             status1 = 1;
         }
         return this.userMapper.queryStatusUsers(status1);
+    }
+    /**
+     * 分页、排序、模糊查询
+     * */
+    @Override
+    public PageResult<User> queryUserByPage(Integer page, Integer rows, String sortBy, Boolean desc, String key) {
+        //1.分页
+        PageHelper.startPage(page,rows);
+
+        //2.排序
+        Example example = new Example(User.class);
+        if (StringUtils.isNotBlank(sortBy)){
+            example.setOrderByClause(sortBy+(desc? " DESC":" ASC"));
+        }
+        // 3.查询
+        if(StringUtils.isNotBlank(key)) {
+            example.createCriteria().orLike("email", key+"%")
+                    .orEqualTo("email", key.toUpperCase())
+                    .orLike("jenkinstype",key+"%")
+                    .orEqualTo("jenkinstype", key.toUpperCase())
+                    .orLike("wechartcount",key+"%")
+                    .orEqualTo("wechartcount", key.toUpperCase())
+                    .orLike("phone",key+"%")
+                    .orEqualTo("phone", key.toUpperCase());
+        }
+
+        List<User> list = this.userMapper.selectByExample(example);
+        //4.创建PageInfo
+        PageInfo<User> pageInfo = new PageInfo<>(list);
+
+        //5.返回分页结果
+        return new PageResult<>(pageInfo.getTotal(),pageInfo.getPages(),pageInfo.getList());
     }
 }

@@ -64,10 +64,21 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!-- 在一个模块引入另外一个模块后 才能使用这个模块的类方法等 -->
+        <dependency>
+            <groupId>com.smartfast.common</groupId>
+            <artifactId>smartfast-common</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>com.smartfast.service</groupId>
             <artifactId>smartfast-user-interface</artifactId>
             <version>${smartfastWeb.latest.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
     </dependencies>
 

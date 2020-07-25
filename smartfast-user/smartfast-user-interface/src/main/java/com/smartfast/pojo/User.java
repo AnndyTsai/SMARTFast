@@ -25,16 +25,16 @@ public class User implements Serializable {
     private Long id;
     //标识当前用户是否被禁用
     @ApiModelProperty(value = "标识当前用户是否被禁用")
-    private Integer isEnable;
+    private Integer isenable;
     //当前用户所属的组
     @ApiModelProperty(value = "当前用户所属的组")
-    private Long group;
+    private Long groups;
     //当前用户的角色
     @ApiModelProperty(value = "当前用户的角色")
     private Long role;
     //当前用户的虚拟组
     @ApiModelProperty(value = "当前用户的虚拟组")
-    private String virtualGroup;
+    private String virtualgroup;
     //当前用户的邮箱地址 作为登录系统的账号使用
     @ApiModelProperty(value = "当前用户的邮箱地址 作为登录系统的账号使用")
     private String email;
@@ -46,16 +46,16 @@ public class User implements Serializable {
     private String headportrait;
     //当前用户对应的jenkins账号
     @ApiModelProperty(value = "当前用户对应的jenkins账号")
-    private String jenkinsCount;
+    private String jenkinscount;
     //当前用户jenkins账号的昵称
     @ApiModelProperty(value = "当前用户jenkins账号的昵称")
-    private String jenkinsType;
+    private String jenkinstype;
     //当前用户的企业微信账号id
     @ApiModelProperty(value = "当前用户的企业微信账号id")
-    private String weChartCount;
+    private String wechartcount;
     //当前用户的企业微信绑定的电话号码
     @ApiModelProperty(value = "前用户的企业微信绑定的电话号码")
-    private String weChartPhone;
+    private String phone;
     //最后一次登录时间
     @ApiModelProperty(value = "最后一次登录时间")
     private Date lastload_time;
@@ -71,20 +71,20 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public Integer getIsEnable() {
-        return isEnable;
+    public Integer getIsenable() {
+        return isenable;
     }
 
-    public void setIsEnable(Integer isEnable) {
-        this.isEnable = isEnable;
+    public void setIsenable(Integer isenable) {
+        this.isenable = isenable;
     }
 
-    public Long getGroup() {
-        return group;
+    public Long getGroups() {
+        return groups;
     }
 
-    public void setGroup(Long group) {
-        this.group = group;
+    public void setGroups(Long groups) {
+        this.groups = groups;
     }
 
     public Long getRole() {
@@ -95,12 +95,12 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public String getVirtualGroup() {
-        return virtualGroup;
+    public String getVirtualgroup() {
+        return virtualgroup;
     }
 
-    public void setVirtualGroup(String virtualGroup) {
-        this.virtualGroup = virtualGroup;
+    public void setVirtualgroup(String virtualgroup) {
+        this.virtualgroup = virtualgroup;
     }
 
     public String getEmail() {
@@ -127,36 +127,36 @@ public class User implements Serializable {
         this.headportrait = headportrait;
     }
 
-    public String getJenkinsCount() {
-        return jenkinsCount;
+    public String getJenkinscount() {
+        return jenkinscount;
     }
 
-    public void setJenkinsCount(String jenkinsCount) {
-        this.jenkinsCount = jenkinsCount;
+    public void setJenkinscount(String jenkinscount) {
+        this.jenkinscount = jenkinscount;
     }
 
-    public String getJenkinsType() {
-        return jenkinsType;
+    public String getJenkinstype() {
+        return jenkinstype;
     }
 
-    public void setJenkinsType(String jenkinsType) {
-        this.jenkinsType = jenkinsType;
+    public void setJenkinsType(String jenkinstype) {
+        this.jenkinstype = jenkinstype;
     }
 
-    public String getWeChartCount() {
-        return weChartCount;
+    public String getWechartcount() {
+        return wechartcount;
     }
 
-    public void setWeChartCount(String weChartCount) {
-        this.weChartCount = weChartCount;
+    public void setWechartcount(String wechartcount) {
+        this.wechartcount = wechartcount;
     }
 
-    public String getWeChartPhone() {
-        return weChartPhone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setWeChartPhone(String weChartPhone) {
-        this.weChartPhone = weChartPhone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Date getLastload_time() {
@@ -179,17 +179,17 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", isEnable=" + isEnable +
-                ", group=" + group +
+                ", isenable=" + isenable +
+                ", group=" + groups +
                 ", role=" + role +
-                ", virtualGroup='" + virtualGroup + '\'' +
+                ", virtualgroup='" + virtualgroup + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", headportrait='" + headportrait + '\'' +
-                ", jenkinsCount='" + jenkinsCount + '\'' +
-                ", jenkinsType='" + jenkinsType + '\'' +
-                ", weChartCount='" + weChartCount + '\'' +
-                ", weChartPhone='" + weChartPhone + '\'' +
+                ", jenkinscount='" + jenkinscount + '\'' +
+                ", jenkinsType='" + jenkinstype + '\'' +
+                ", wechartcount='" + wechartcount + '\'' +
+                ", phone='" + phone + '\'' +
                 ", lastload_time=" + lastload_time +
                 ", update_time=" + update_time +
                 '}';

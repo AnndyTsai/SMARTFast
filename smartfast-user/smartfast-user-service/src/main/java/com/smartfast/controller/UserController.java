@@ -5,6 +5,7 @@
  * */
 package com.smartfast.controller;
 
+import com.smartfast.common.pojo.PageResult;
 import com.smartfast.pojo.User;
 import com.smartfast.service.UserService;
 import io.swagger.annotations.Api;
@@ -105,5 +106,36 @@ public class UserController {
     public ResponseEntity<List<User>> queryUserById(@RequestParam("status") Boolean status){
 
         return ResponseEntity.ok(this.userService.queryStatusUsers(status));
+    }
+
+    /**
+     * 分页查询，模糊检索，排序
+     * @param page：第几页
+     * @param rows：每页大小
+     * @param sortBy：按照什么排序
+     * @param desc：降序还是升序
+     * @param key：搜索关键字
+     * */
+    @ApiOperation(value = "分页查询用户/排序/模糊查询")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page",paramType ="form",value = "页码", defaultValue = "1"),
+            @ApiImplicitParam(name = "rows",paramType ="form",value = "每页展示条数", defaultValue = "5"),
+            @ApiImplicitParam(name = "sortBy",paramType ="form",value = "排序字段", dataType = "String"),
+            @ApiImplicitParam(name = "desc",paramType ="form",value = "排序方式,升序/降序", defaultValue = "false", dataType = "String"),
+            @ApiImplicitParam(name = "key",paramType ="form",value = "搜索关键字", dataType = "String")
+    })
+    @GetMapping("/queryUsers")
+    public ResponseEntity<PageResult<User>> queryUsersModel(
+            @RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "rows", defaultValue = "5") Integer rows,
+            @RequestParam(value = "sortBy", required = false) String sortBy,
+            @RequestParam(value = "desc", defaultValue = "false") Boolean desc,
+            @RequestParam(value = "key", required = false) String key
+    ){
+        PageResult<User> result = this.userService.queryUserByPage(page,rows,sortBy,desc,key);
+        if(result == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.ok(result);
     }
 }
