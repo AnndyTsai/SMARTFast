@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Api(tags = "用户服务接口文档")
@@ -104,7 +105,6 @@ public class UserController {
     @ApiImplicitParam(name = "status",paramType ="form",value = "用户启用状态 true/false", required = true, dataType = "Boolean")
     @GetMapping("/queryStatusUsers")
     public ResponseEntity<List<User>> queryUserById(@RequestParam("status") Boolean status){
-
         return ResponseEntity.ok(this.userService.queryStatusUsers(status));
     }
 
